@@ -26,10 +26,11 @@ export async function POST(request: NextRequest) {
         },
       }
     );
-  } catch (error) {
-    console.error("Resumé-generering fejlede:", error);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Resumé-generering fejlede:", message);
     return NextResponse.json(
-      { error: "Kunne ikke generere resumé. Prøv igen." },
+      { error: `Resumé-fejl: ${message}` },
       { status: 500 }
     );
   }

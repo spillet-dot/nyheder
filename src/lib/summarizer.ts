@@ -13,7 +13,7 @@ export async function generateSummary(title: string, description: string): Promi
   const anthropic = getClient();
 
   const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 200,
     system:
       "Du er en dansk nyhedsredaktør. Skriv et kort resumé (2-3 sætninger) på dansk af denne AI-nyhed. Vær præcis og informativ.",
