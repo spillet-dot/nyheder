@@ -11,7 +11,7 @@ function getClient(): GoogleGenerativeAI {
 
 export async function generateSummary(title: string, description: string): Promise<string> {
   const ai = getClient();
-  const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const result = await model.generateContent({
     contents: [
