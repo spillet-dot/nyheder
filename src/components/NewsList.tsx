@@ -12,7 +12,7 @@ interface NewsListProps {
 
 export default function NewsList({ tab }: NewsListProps) {
   const [category, setCategory] = useState<Category>("alle");
-  const { items, isLoading, error } = useNews(tab, category);
+  const { items, isLoading, isValidating, error } = useNews(tab, category);
 
   if (error) {
     return (
@@ -25,7 +25,15 @@ export default function NewsList({ tab }: NewsListProps) {
 
   return (
     <div>
-      <CategoryFilter selected={category} onChange={setCategory} />
+      <div className="flex items-center justify-between mb-2">
+        <CategoryFilter selected={category} onChange={setCategory} />
+        {isValidating && !isLoading && (
+          <span className="text-xs text-gray-400 dark:text-gray-600 flex items-center gap-1.5 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            Opdaterer...
+          </span>
+        )}
+      </div>
 
       {isLoading ? (
         <div className="space-y-4">
@@ -48,6 +56,9 @@ export default function NewsList({ tab }: NewsListProps) {
         </div>
       ) : (
         <div>
+          <p className="text-xs text-gray-400 dark:text-gray-600 mb-4">
+            {items.length} nyheder
+          </p>
           {items.map((item, index) => (
             <NewsItem key={`${item.id}-${index}`} item={item} />
           ))}

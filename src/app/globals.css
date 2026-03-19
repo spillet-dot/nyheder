@@ -24,3 +24,20 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+/* Hide scrollbar on nav tabs */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fix visited link colors in news items */
+article a:visited {
+  color: var(--foreground);
+}
+.dark article a:visited {
+  color: #f3f4f6;
+}

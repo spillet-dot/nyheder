@@ -6,7 +6,7 @@ import { NewsItem, Tab, Category } from "@/lib/types";
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 export function useNews(tab: Tab, category: Category = "alle") {
-  const { data, error, isLoading } = useSWR<{ items: NewsItem[] }>(
+  const { data, error, isLoading, isValidating } = useSWR<{ items: NewsItem[] }>(
     `/api/news?tab=${tab}`,
     fetcher,
     {
@@ -21,5 +21,5 @@ export function useNews(tab: Tab, category: Category = "alle") {
       ? data?.items.filter((item) => item.category === category)
       : data?.items;
 
-  return { items: items || [], error, isLoading };
+  return { items: items || [], error, isLoading, isValidating };
 }
