@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateSummary } from "@/lib/summarizer";
 
 export async function POST(request: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     return NextResponse.json(
-      { error: "API-nøgle mangler. Tilføj ANTHROPIC_API_KEY i .env.local" },
+      { error: "API-nøgle mangler. Tilføj GEMINI_API_KEY i .env.local" },
       { status: 503 }
     );
   }
