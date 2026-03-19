@@ -9,6 +9,18 @@ function getClient(): GoogleGenerativeAI {
   return genAI;
 }
 
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    .replace(/^#+\s*/gm, "")
+    .replace(/^[-*]\s+/gm, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .trim();
+}
+
 export async function generateSummary(title: string, description: string): Promise<string> {
   const ai = getClient();
   const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
@@ -19,12 +31,12 @@ export async function generateSummary(title: string, description: string): Promi
         role: "user",
         parts: [
           {
-            text: `Du er en dansk nyhedsredaktør. Skriv et kort resumé (2-3 sætninger) på dansk af denne AI-nyhed. Vær præcis og informativ.\n\nTitel: ${title}\n\nBeskrivelse: ${description || "(ingen beskrivelse tilgængelig)"}`,
+            text: `Skriv 2-3 sætninger på dansk der opsummerer denne AI-nyhed. Skriv KUN selve resuméet – ingen overskrift, ingen indledning som "Her er et resumé", ingen markdown-formatering. Bare ren tekst.\n\nTitel: ${title}\n\nBeskrivelse: ${description || "(ingen beskrivelse tilgængelig)"}`,
           },
         ],
       },
     ],
   });
 
-  return result.response.text();
+  return stripMarkdown(result.response.text());
 }

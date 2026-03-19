@@ -3,6 +3,7 @@ import { FEEDS, GOOGLE_KEYWORDS } from "@/lib/feeds";
 import { fetchFeed } from "@/lib/rss";
 import { scrapeAnthropicBlog } from "@/lib/scraper";
 import { Tab, NewsItem } from "@/lib/types";
+import { scoreRelevance } from "@/lib/relevance";
 
 export async function GET(request: NextRequest) {
   const tab = (request.nextUrl.searchParams.get("tab") || "generelt") as Tab;
@@ -52,8 +53,20 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Sort by date, newest first
-  items.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+  // Sort by relevance score first, then by date within same relevance tier
+  items.sort((a, b) => {
+    const scoreA = scoreRelevance(a.title, a.description);
+    const scoreB = scoreRelevance(b.title, b.description);
+
+    // Group into relevance tiers (high: 8+, medium: 3-7, low: 0-2)
+    const tierA = scoreA >= 8 ? 2 : scoreA >= 3 ? 1 : 0;
+    const tierB = scoreB >= 8 ? 2 : scoreB >= 3 ? 1 : 0;
+
+    if (tierA !== tierB) return tierB - tierA;
+
+    // Within same tier, sort by date (newest first)
+    return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
+  });
 
   // Assign unique IDs based on final position
   items.forEach((item, i) => {

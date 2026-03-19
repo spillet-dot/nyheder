@@ -44,7 +44,15 @@
       "Bash(node -e \":*)",
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyCw-jlcFhOIJnMfi4TDPNc1Q7MQMFUnUCU\")",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCw-jlcFhOIJnMfi4TDPNc1Q7MQMFUnUCU\" -H \"Content-Type: application/json\" -d '{\"\"\"\"contents\"\"\"\":[{\"\"\"\"parts\"\"\"\":[{\"\"\"\"text\"\"\"\":\"\"\"\"Sig hej på dansk\"\"\"\"}]}]}')",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCCnWqG2eIzspDU29QMq1K0RfRdNdsXaO8\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Sig hej på dansk i én sætning\"\"}]}]}')",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCCnWqG2eIzspDU29QMq1K0RfRdNdsXaO8\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Sig hej på dansk i én sætning\"\"}]}]}')",
+      "Bash(curl -s -X POST \"https://nyheder-spillet-dots-projects.vercel.app/api/summary\" -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Test nyhed om AI\"\",\"\"description\"\":\"\"OpenAI lancerer ny model\"\"}')",
+      "Bash(curl -s -X POST \"https://ai-nyheder-nmz5rfd86-sundhed.vercel.app/api/summary\" -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Test nyhed om AI\"\",\"\"description\"\":\"\"OpenAI lancerer ny model\"\"}')",
+      "Bash(curl -s -X POST \"https://ai-nyheder-nine.vercel.app/api/summary\" -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Test nyhed om AI\"\",\"\"description\"\":\"\"OpenAI lancerer ny model der kan kode bedre\"\"}')"
     ]
   }
 }

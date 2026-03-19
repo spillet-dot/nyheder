@@ -24,7 +24,7 @@ export const FEEDS: Record<Tab, FeedConfig[]> = {
     { name: "Reddit r/anthropic", url: "https://www.reddit.com/r/anthropic/.rss", icon: "R" },
   ],
   github: [
-    // Martin's core stack - releases & updates
+    // Martin's core stack
     { name: "Next.js", url: "https://github.com/vercel/next.js/releases.atom", icon: "NX" },
     { name: "Supabase", url: "https://github.com/supabase/supabase/releases.atom", icon: "SB" },
     { name: "Anthropic SDK", url: "https://github.com/anthropics/anthropic-sdk-python/releases.atom", icon: "AN" },
@@ -33,9 +33,12 @@ export const FEEDS: Record<Tab, FeedConfig[]> = {
     { name: "React Three Fiber", url: "https://github.com/pmndrs/react-three-fiber/releases.atom", icon: "R3" },
     { name: "FastAPI", url: "https://github.com/fastapi/fastapi/releases.atom", icon: "FA" },
     { name: "MCP Spec", url: "https://github.com/modelcontextprotocol/specification/releases.atom", icon: "MC" },
+    { name: "MCP Servers", url: "https://github.com/modelcontextprotocol/servers/releases.atom", icon: "MC" },
     // AI/LLM open source
     { name: "Ollama", url: "https://github.com/ollama/ollama/releases.atom", icon: "OL" },
     { name: "LangChain", url: "https://github.com/langchain-ai/langchain/releases.atom", icon: "LC" },
+    // Google AI
+    { name: "Google GenAI SDK", url: "https://github.com/google-gemini/generative-ai-js/releases.atom", icon: "GG" },
     // GitHub Blog
     { name: "GitHub Blog", url: "https://github.blog/feed/", icon: "GH" },
   ],
