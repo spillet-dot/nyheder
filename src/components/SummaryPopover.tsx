@@ -28,9 +28,13 @@ export default function SummaryPopover({ title, description }: SummaryPopoverPro
         body: JSON.stringify({ title, description }),
       });
       const data = await res.json();
-      setSummary(data.summary || "Kunne ikke generere resumé.");
+      if (data.error) {
+        setSummary(data.error);
+      } else {
+        setSummary(data.summary || "Kunne ikke generere resumé.");
+      }
     } catch {
-      setSummary("Fejl ved generering af resumé.");
+      setSummary("Fejl ved generering af resumé. Tjek din internetforbindelse.");
     } finally {
       setLoading(false);
     }

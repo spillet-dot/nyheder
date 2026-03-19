@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const tab = (request.nextUrl.searchParams.get("tab") || "generelt") as Tab;
 
   if (!FEEDS[tab]) {
-    return NextResponse.json({ error: "Invalid tab" }, { status: 400 });
+    return NextResponse.json({ error: "Ugyldig fane" }, { status: 400 });
   }
 
   const feeds = FEEDS[tab];
